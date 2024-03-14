@@ -1,5 +1,5 @@
 module.exports = {
-    token : "MTE4NDI0MDc4OTE0MDgwMzYzNQ.GhOz6-.k4FWE6PIVU20h07XbfxNKJYEtihpShcUL4LYYI", 
+    token : "MTE4MTk4NjgzNDU3NDc1ODAxMQ.G69p1u.9fsziU8ABMSLfWVv4t8m72m5zXm8LcE73kmkS8", 
     prefix : "$",
-    owner: "1111433474608467998"
+    owner: "1181986834574758011"
 }
