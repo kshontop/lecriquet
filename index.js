@@ -1,35 +1,29 @@
 const { Client } = require('discord.js-selfbot-v13');
-const client = new Client({ checkUpdate: false });
 const config = require('../lealove/src/config');
-
-const ping = require('./command/ping');
-const gay = require('./command/gay');
-const copy = require('./command/copy');
-const sendmessage = require('./command/sendmessage');
-const hypesquad = require('./command/hypesquad');
-const stats = require('./command/stats');
+const { handleCommand } = require('./commandHandlers/commandHandler');
+const snipeNitro = require('./commands/snipe')
+const client = new Client({ checkUpdate: false });
 
 client.on('messageCreate', async (msg) => {
-    if (msg.content.startsWith(config.prefix)) {
+    try {
+        if (!msg || !msg.content.startsWith(config.prefix)) {
+            return;
+        }
+        if (msg.author.id !== config.owner) {
+            return console.log(`tente d'utiliser le selfbot mdr`);
+        }
         const args = msg.content.slice(config.prefix.length).trim().split(/ +/);
         const command = args.shift().toLowerCase();
-
-        if (command === "ping") {
-            await ping(client, msg);$
-        } 
-        else if (command === "hypesquad") {
-            await hypesquad(client, msg);
-        }
-        else if (command === "stats") {
-            await stats(client, msg);
-        }
-        else {
-            msg.reply('❌ Commande introuvable');
-        }
+        await handleCommand(client, command, args, msg);
+    } catch (error) {
+        console.error('Une erreur s\'est produite :', error);
+        msg.reply('Une erreur s\'est produite lors du traitement de votre commande.');
     }
 });
 
 client.on('ready', async () => {
     console.log(`${client.user.tag} est prêt !`);
-})
+    snipeNitro(client)
+});
+
 client.login(config.token);

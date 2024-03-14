@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "discord.js-selfbot-v13": "^3.0.2"
+    "@discordjs/voice": "^0.16.1",
+    "axios": "^1.6.7",
+    "discord.js-selfbot-v13": "^3.0.2",
+    "ms": "^2.1.3"
   }
 }
